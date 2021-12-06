@@ -2,7 +2,7 @@
 
 {% block container %}
 <h2>Read</h2>
-<p>This page shows information pulled from a MongoDB database collection.
+<p>There are currently {{doc.colleection.count()}}.
         
     {% for doc in docs %}
     <div>
@@ -10,11 +10,7 @@
         </p>
         <p>Project Title: {{ doc.project_title }}<p></p>
         <p>Created By by {{doc.name}} at {{ doc.created_at.strftime("%H:%M on %d %B %Y") }}<p></p>
-        <p>Project Description: {{ doc.description }} selector {
-            word-wrap: break-word;      /* IE 5.5-7 */
-            white-space: -moz-pre-wrap; /* Firefox 1.0-2.0 */
-            white-space: pre-wrap;      /* current browsers */
-      }<p></p>
+        <p>Project Description: {{ doc.description }} <p></p>
         </p>
         <p class="post">
         </br>
