@@ -35,7 +35,8 @@ def home():
     """
     Route for the home page
     """
-    return render_template('index.html')
+    docs = db.exampleapp.find({})
+    return render_template('index.html', docs=docs)
 
 
 @app.route('/join')
