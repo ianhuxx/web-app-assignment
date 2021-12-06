@@ -12,6 +12,7 @@
         <p>Created By by {{doc.name}} at {{ doc.created_at.strftime("%H:%M on %d %B %Y") }}<p></p>
         <p>Project Description: {{ doc.description }} <p></p>
         </p>
+        <label><input type="checkbox" name="myCheckbox"> Check me!</label>
         <p class="post">
         </br>
         <a href="{{ url_for('edit',mongoid=doc._id)}}">Edit</a> | <a href="{{ url_for('delete',mongoid=doc._id)}}">Delete</a>
