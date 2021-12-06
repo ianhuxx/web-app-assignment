@@ -45,7 +45,7 @@ def join():
     Displays some information for the user with links to other pages.
     """
     docs = db.exampleapp.find({}).sort("created_at", -1) # sort in descending order of created_at timestamp
-    return render_template('read.html', docs=docs) # render the read template
+    return render_template('join.html', docs=docs) # render the read template
 
 
 @app.route('/create')
@@ -78,7 +78,7 @@ def create_post():
     }
     db.exampleapp.insert_one(doc) # insert a new document
 
-    return redirect(url_for('read')) # tell the browser to make a request for the /read route
+    return redirect(url_for('join')) # tell the browser to make a request for the /read route
 
 
 @app.route('/edit/<mongoid>')
@@ -116,7 +116,7 @@ def edit_post(mongoid):
         { "$set": doc }
     )
 
-    return redirect(url_for('read')) # tell the browser to make a request for the /read route
+    return redirect(url_for('join')) # tell the browser to make a request for the /read route
 
 
 @app.route('/delete/<mongoid>')
@@ -126,7 +126,7 @@ def delete(mongoid):
     Deletes the specified record from the database, and then redirects the browser to the read page.
     """
     db.exampleapp.delete_one({"_id": ObjectId(mongoid)})
-    return redirect(url_for('read')) # tell the web browser to make a request for the /read route.
+    return redirect(url_for('join')) # tell the web browser to make a request for the /read route.
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
