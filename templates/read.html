@@ -12,8 +12,7 @@
             <a href="{{ url_for('edit',mongoid=doc._id)}}">Edit</a> | <a href="{{ url_for('delete',mongoid=doc._id)}}">Delete</a>
             </br>
         </p>
-        <p>
-            Project Title: {{ doc.project_title }}
+        <p>Project Title: {{ doc.project_title }}<p></p>
             Created By by {{doc.name}} at {{ doc.created_at.strftime("%H:%M on %d %B %Y") }}
             Project Description: {{ doc.description }}
         </p>
