@@ -9,11 +9,12 @@
         <li><a href="{{ url_for('discussion')}}">looking for ideas?</a></li>
     </ul>
 </p>
-<footer>
+<header>
 <p> Descriptive Stats for now
     <ul>
         <li>Number of Teams: {{ docs.collection.count() }}</li>
         <li>Number of Discussions: {{ docs.collection.count() }}</li>
     </ul>
 </p>
+<footer></footer>
 {% endblock %}
