@@ -38,8 +38,8 @@ def home():
     return render_template('index.html')
 
 
-@app.route('/read')
-def read():
+@app.route('/join')
+def join():
     """
     Route for GET requests to the read page.
     Displays some information for the user with links to other pages.
