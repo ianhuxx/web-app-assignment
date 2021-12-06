@@ -3,11 +3,11 @@
 <p>Create a new record in the MongoDB database collection.</p>
 <form method="POST" action="{{ url_for('create_post') }}">
   <p>Your name: <input type="text" id="fname" name="fname" /><br /></p>
-  <p>Email: <input type="text" id="fname" name="fname" /><br /></p>
-  <p>Project Title: <input type="text" id="fname" name="fname" /><br /></p>
+  <p>Email: <input type="text" id="femail" name="femail" /><br /></p>
+  <p>Project Title: <input type="fproj_title" id="fname" name="fproj_title" /><br /></p>
   <p>
     Project Description: <br />
-    <textarea type="text" id="fmessage" name="fmessage"></textarea>
+    <textarea type="text" id="fdescription" name="fdescription"></textarea>
   </p>
   <p>
     <a href="{{ url_for('read')}}">Cancel</a>
