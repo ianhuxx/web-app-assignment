@@ -38,8 +38,8 @@ def home():
     return render_template('index.html')
 
 
-@app.route('/join')
-def join():
+@app.route('/read')
+def read():
     """
     Route for GET requests to the read page.
     Displays some information for the user with links to other pages.
@@ -64,17 +64,13 @@ def create_post():
     Accepts the form submission data for a new document and saves the document to the database.
     """
     name = request.form['fname']
-    email = request.form['femail']
-    project_name = request.form['fproj_name']
-    description = request.form['fdescription']
+    message = request.form['fmessage']
 
 
     # create a new document with the data the user entered
     doc = {
         "name": name,
-        "email": email, 
-        "project_name": project_name,
-        "description": description,
+        "message": message, 
         "created_at": datetime.datetime.utcnow()
     }
     db.exampleapp.insert_one(doc) # insert a new document
@@ -99,17 +95,12 @@ def edit_post(mongoid):
     Accepts the form submission data for the specified document and updates the document in the database.
     """
     name = request.form['fname']
-    email = request.form['femail']
-    project_name = request.form['fproj_name']
-    description = request.form['fdescription']
+    message = request.form['fmessage']
 
-
-    # create a new document with the data the user entered
     doc = {
-        "name": name,
-        "email": email, 
-        "project_name": project_name,
-        "description": description,
+        # "_id": ObjectId(mongoid), 
+        "name": name, 
+        "message": message, 
         "created_at": datetime.datetime.utcnow()
     }
 
