@@ -128,6 +128,14 @@ def delete(mongoid):
     db.exampleapp.delete_one({"_id": ObjectId(mongoid)})
     return redirect(url_for('join')) # tell the web browser to make a request for the /read route.
 
+@app.route('/create')
+def discussion():
+    """
+    Route for GET requests to the create page.
+    Displays a form users can fill out to create a new document.
+    """
+    return render_template('discussion.html') # render the create template
+
 @app.route('/webhook', methods=['POST'])
 def webhook():
     """
