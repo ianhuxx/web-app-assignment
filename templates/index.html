@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block container %}
+<h2>Welcome!</h2>
+<p>THis is the sign up page for Web App Assignment.
+    <ul>
+        <li><a href="{{ url_for('read')}}">Join an existing team</a></li>
+        <li><a href="{{ url_for('create')}}">Creating a new Team</a></li>
+        <li><a href="{{ url_for('discussion')}}">Looking for ideas?</a></li>
+    </ul>
+</p>
+{% endblock %}
