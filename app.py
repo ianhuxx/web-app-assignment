@@ -100,23 +100,12 @@ def join_team(mongoid):
     Route for POST requests to the edit page.
     Accepts the form submission data for the specified document and updates the document in the database.
     """
-    name = request.form['fname']
-    email = request.form['femail']
-    project_title = request.form['fproj_title']
-    description = request.form['fdescription']
-
-    # create a new document with the data the user entered
-    doc = {
-        "name": name,
-        "email": email,
-        "project_title": project_title,
-        "description": description,
-        "created_at": datetime.datetime.utcnow()
-    }
+    name = request.form['fjoin_name']
+    email = request.form['fjoin_email']
 
     db.teams.update_one(
         {"_id": ObjectId(mongoid)}, # match criteria
-        { "$set": doc }
+        { "$push": { "team_members": { "name": name, "email": email } } } # update criteria
     )
 
     return redirect(url_for('join')) # tell the browser to make a request for the /read route

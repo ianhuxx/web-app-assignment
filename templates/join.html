@@ -26,7 +26,8 @@
                 
         </div>
         {%endfor%}
-        <input type="name" name="joined_name" placeholder="your name" size="30" required>
+        <input type="name" name="joined_name" placeholder="your name" size="50" required>
+        <input type="email" name="joined_email" placeholder="your_email@nyu.edu" size="70" required>
         <input type="submit" name="post-btn" value="Submit" />
     <p>
       <a href="{{ url_for('join')}}">Cancel</a>
