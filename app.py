@@ -95,7 +95,7 @@ def edit(mongoid):
 
 
 @app.route('/edit/<mongoid>', methods=['POST'])
-def edit_team(mongoid):
+def join_team(mongoid):
     """
     Route for POST requests to the edit page.
     Accepts the form submission data for the specified document and updates the document in the database.
