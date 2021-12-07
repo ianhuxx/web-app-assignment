@@ -85,7 +85,7 @@ def create_team():
 
 
 @app.route('/join/<mongoid>')
-def edit(mongoid):
+def join():
     """
     Route for GET requests to the edit page.
     Displays a form users can fill out to edit an existing record.
