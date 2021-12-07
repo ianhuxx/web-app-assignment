@@ -35,7 +35,7 @@ def home():
     """
     Route for the home page
     """
-    docs = db.exampleapp.find({})
+    docs = db.teams.find({})
     return render_template('index.html', docs=docs)
 
 
@@ -45,7 +45,7 @@ def join():
     Route for GET requests to the read page.
     Displays some information for the user with links to other pages.
     """
-    docs = db.exampleapp.find({}).sort("created_at", -1) # sort in descending order of created_at timestamp
+    docs = db.teams.find({}).sort("created_at", -1) # sort in descending order of created_at timestamp
     return render_template('join.html', docs=docs) # render the read template
 
 
@@ -77,7 +77,7 @@ def create_team():
         "description": description,
         "created_at": datetime.datetime.utcnow()
     }
-    db.exampleapp.insert_one(doc) # insert a new document
+    db.teams.insert_one(doc) # insert a new document
 
     return redirect(url_for('join')) # tell the browser to make a request for the /read route
 
@@ -88,7 +88,7 @@ def edit(mongoid):
     Route for GET requests to the edit page.
     Displays a form users can fill out to edit an existing record.
     """
-    doc = db.exampleapp.find_one({"_id": ObjectId(mongoid)})
+    doc = db.teams.find_one({"_id": ObjectId(mongoid)})
     return render_template('edit.html', mongoid=mongoid, doc=doc) # render the edit template
 
 
@@ -112,7 +112,7 @@ def edit_team(mongoid):
         "created_at": datetime.datetime.utcnow()
     }
 
-    db.exampleapp.update_one(
+    db.teams.update_one(
         {"_id": ObjectId(mongoid)}, # match criteria
         { "$set": doc }
     )
@@ -126,7 +126,7 @@ def delete(mongoid):
     Route for GET requests to the delete page.
     Deletes the specified record from the database, and then redirects the browser to the read page.
     """
-    db.exampleapp.delete_one({"_id": ObjectId(mongoid)})
+    db.teams.delete_one({"_id": ObjectId(mongoid)})
     return redirect(url_for('join')) # tell the web browser to make a request for the /read route.
 
 @app.route('/create')
