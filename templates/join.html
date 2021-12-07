@@ -16,7 +16,7 @@
             <p>Created By by {{doc.name}} at {{ doc.created_at.strftime("%H:%M on %d %B %Y") }}<p></p>
             <p>Project Description: {{ doc.description }} <p></p>
             <p>
-                %for member in doc.members%
+                {%for member in doc.members%}
                 <p>{{member.name}}, {{menber.email}}</p>
                 {% endfor %}
             <p></p>
