@@ -75,8 +75,10 @@ def create_team():
         "email": email,
         "project_title": project_title,
         "description": description,
-        "created_at": datetime.datetime.utcnow()
+        "created_at": datetime.datetime.utcnow(),
+        "team_members": []
     }
+    doc["team_members"].append({"name": name, "email": email})
     db.teams.insert_one(doc) # insert a new document
 
     return redirect(url_for('join')) # tell the browser to make a request for the /read route
