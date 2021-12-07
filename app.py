@@ -59,7 +59,7 @@ def create():
 
 
 @app.route('/create', methods=['POST'])
-def create_post():
+def create_team():
     """
     Route for POST requests to the create page.
     Accepts the form submission data for a new document and saves the document to the database.
@@ -93,7 +93,7 @@ def edit(mongoid):
 
 
 @app.route('/edit/<mongoid>', methods=['POST'])
-def edit_post(mongoid):
+def edit_team(mongoid):
     """
     Route for POST requests to the edit page.
     Accepts the form submission data for the specified document and updates the document in the database.
