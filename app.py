@@ -56,7 +56,6 @@ def create():
     """
     return render_template('create.html') # render the create template
 
-
 @app.route('/create', methods=['POST'])
 def create_post():
     """
@@ -77,6 +76,36 @@ def create_post():
 
     return redirect(url_for('read')) # tell the browser to make a request for the /read route
 
+def create_team_1():
+    """
+    Route for GET requests to the create page.
+    Displays a form users can fill out to create a new document.
+    """
+    return render_template('create_team.html') # render the create template
+
+@app.route('/create_team', methods=['POST'])
+def create_team():
+    """
+    Route for POST requests to the create page.
+    Accepts the form submission data for a new document and saves the document to the database.
+    """
+    name = request.form['fname']
+    email = request.form['femail']
+    project_title = request.form['fproj_title']
+    description = request.form['fdescription']
+
+    # create a new document with the data the user entered
+    doc = {
+        "name": name,
+        "email": email,
+        "project_title": project_title,
+        "description": description,
+        "created_at": datetime.datetime.utcnow(),
+        "team_members": []
+    }
+    doc["team_members"].append({"name": name, "email": email})
+    db.teams.insert_one(doc) # insert a new document
+    return redirect(url_for('view_team')) # tell the browser to make a request for the /read route
 
 @app.route('/edit/<mongoid>')
 def edit(mongoid):
