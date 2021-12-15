@@ -2,10 +2,16 @@
 
 {% block container %}
 <h2>Welcome!</h2>
-<p>Welcome to the Flask app. This is the home page. Here are a few links to example pages you might find interesting.
+<p>Welcome to the Flask-MongoDB Team Signup Site. To view, join or create a team, please click the corresponding tabs. If you are still looking for ideas, please visit the discussion board for chatting with your classmates.
     <ul>
-        <li><a href="{{ url_for('read')}}">a page that displays information pulled from a MongoDB database collection</a></li>
-        <li><a href="{{ url_for('create')}}">a page with a form you can submit to create a new record in a MongoDB collection</a></li>
+        <li><a href="{{ url_for('view_team')}}">Display all current teams</a></li>
+        <li><a href="{{ url_for('join_team')}}">Joining an existing team</a></li>
+        <li><a href="{{ url_for('create_team')}}">Creating a new team</a></li>
+        <li><a href="{{ url_for('read')}}">Looking for ideas?</a></li>
+        <li><a href="{{ url_for('create')}}">Have an idea? Shoot it!</a></li>
     </ul>
 </p>
+There are currently {{teams.count()}} teams created.
+<p></p>
+There are currently {{discussions.count()}} posts created.
 {% endblock %}

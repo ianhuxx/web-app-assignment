@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 
 {% block container %}
-<h2>Read</h2>
-<p>This page shows information pulled from a MongoDB database collection.
+<h2>Read Discussions</h2>
+<p>This page shows all discussions posted.
+<p>There are currently {{docs.count()}} posts created.</p>
         
     {% for doc in docs %}
     <div>

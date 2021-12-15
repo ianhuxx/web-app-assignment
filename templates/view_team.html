@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block container %}
+<h2>View Teams</h2>
+<p>This page shows all current existing teams.
+<P>There are currently {{docs.count()}} teams created.</P>
+        
+    {% for doc in docs %}
+    <div>
+        <hr class="solid">
+            Projec Title: {{doc.project_title}}
+        </br>
+            Posted at: {{doc.created_at}}
+        <p></p>
+            Project Description: {{doc.description}}
+            </br>
+            </br>
+            Team Members(Team Member Count: {{doc.team_member_count}}):
+            <p></p>
+            {% for member in doc.team_members %}
+                {{member.name}}, {{member.email}}
+            </br>
+            {% endfor %}
+        </p>
+    </div>
+    {%endfor%}
+</p>
+{% endblock %}

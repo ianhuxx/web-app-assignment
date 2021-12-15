@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block container %}
+<h2>Join a Team</h2>
+
+</p>
+
+<form method="POST" action="{{ url_for('join_team') }}">
+    <p>There are currently {{docs.count()}} teams created.
+      <hr class="solid">
+      <select name = "team_to_join">
+        {% for doc in docs %}
+            <option value="{{doc.project_title}}">{{doc.project_title}}
+            </option>
+        {%endfor%}
+      </select>
+      </p>
+        <input type="name" name="joined_name" placeholder="your name" size="50" required>
+        <input type="email" name="joined_email" placeholder="your_email@nyu.edu" size="70" required>
+        <input type="submit" name="post-btn" value="Submit" />
+    </br>
+    <p>
+      <a href="{{ url_for('view_team')}}">Cancel</a>
+      <input type="submit" name="post-btn" value="Post" />
+    </p>
+     <p class="post">
+  </form>
+
+{% endblock %}
