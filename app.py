@@ -76,6 +76,7 @@ def create_post():
 
     return redirect(url_for('read')) # tell the browser to make a request for the /read route
 
+@app.route('/create_team')
 def create_team_1():
     """
     Route for GET requests to the create page.
