@@ -35,18 +35,17 @@ def home():
     """
     Route for the home page
     """
-    docs = db.teams.find({})
-    return render_template('index.html', docs=docs)
+    return render_template('index.html')
 
 
-@app.route('/join')
-def join():
+@app.route('/read')
+def read():
     """
     Route for GET requests to the read page.
     Displays some information for the user with links to other pages.
     """
-    docs = db.teams.find({}).sort("created_at", -1) # sort in descending order of created_at timestamp
-    return render_template('join.html', docs=docs) # render the read template
+    docs = db.exampleapp.find({}).sort("created_at", -1) # sort in descending order of created_at timestamp
+    return render_template('read.html', docs=docs) # render the read template
 
 
 @app.route('/create')
@@ -59,56 +58,58 @@ def create():
 
 
 @app.route('/create', methods=['POST'])
-def create_team():
+def create_post():
     """
     Route for POST requests to the create page.
     Accepts the form submission data for a new document and saves the document to the database.
     """
     name = request.form['fname']
-    email = request.form['femail']
-    project_title = request.form['fproj_title']
-    description = request.form['fdescription']
+    message = request.form['fmessage']
+
 
     # create a new document with the data the user entered
     doc = {
         "name": name,
-        "email": email,
-        "project_title": project_title,
-        "description": description,
-        "created_at": datetime.datetime.utcnow(),
-        "team_members": []
+        "message": message, 
+        "created_at": datetime.datetime.utcnow()
     }
-    doc["team_members"].append({"name": name, "email": email})
-    db.teams.insert_one(doc) # insert a new document
+    db.exampleapp.insert_one(doc) # insert a new document
 
-    return redirect(url_for('join')) # tell the browser to make a request for the /read route
+    return redirect(url_for('read')) # tell the browser to make a request for the /read route
 
 
-@app.route('/join/<mongoid>')
-def join():
+@app.route('/edit/<mongoid>')
+def edit(mongoid):
     """
     Route for GET requests to the edit page.
     Displays a form users can fill out to edit an existing record.
     """
-    doc = db.teams.find_one({"_id": ObjectId(mongoid)})
-    return render_template('join.html', mongoid=mongoid, doc=doc) # render the edit template
+    doc = db.exampleapp.find_one({"_id": ObjectId(mongoid)})
+    return render_template('edit.html', mongoid=mongoid, doc=doc) # render the edit template
 
 
-@app.route('/join/<mongoid>', methods=['POST'])
-def join_team(mongoid):
+@app.route('/edit/<mongoid>', methods=['POST'])
+def edit_post(mongoid):
     """
     Route for POST requests to the edit page.
     Accepts the form submission data for the specified document and updates the document in the database.
     """
-    name = request.form['fjoin_name']
-    email = request.form['fjoin_email']
+    name = request.form['fname']
+    message = request.form['fmessage']
 
-    db.teams.update_one(
+    doc = {
+        # "_id": ObjectId(mongoid), 
+        "name": name, 
+        "message": message, 
+        "created_at": datetime.datetime.utcnow()
+    }
+
+    db.exampleapp.update_one(
         {"_id": ObjectId(mongoid)}, # match criteria
-        { "$push": { "team_members": { "name": name, "email": email } } } # update criteria
+        { "$set": doc }
     )
 
-    return redirect(url_for('join')) # tell the browser to make a request for the /read route
+    return redirect(url_for('read')) # tell the browser to make a request for the /read route
 
 
 @app.route('/delete/<mongoid>')
@@ -117,16 +118,8 @@ def delete(mongoid):
     Route for GET requests to the delete page.
     Deletes the specified record from the database, and then redirects the browser to the read page.
     """
-    db.teams.delete_one({"_id": ObjectId(mongoid)})
-    return redirect(url_for('join')) # tell the web browser to make a request for the /read route.
-
-@app.route('/create')
-def discussion():
-    """
-    Route for GET requests to the create page.
-    Displays a form users can fill out to create a new document.
-    """
-    return render_template('discussion.html') # render the create template
+    db.exampleapp.delete_one({"_id": ObjectId(mongoid)})
+    return redirect(url_for('read')) # tell the web browser to make a request for the /read route.
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
