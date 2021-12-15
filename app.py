@@ -75,7 +75,7 @@ def create_post():
     db.exampleapp.insert_one(doc) # insert a new document
 
     return redirect(url_for('read')) # tell the browser to make a request for the /read route
-
+'''
 @app.route('/create_team')
 def create_team_1():
     """
@@ -107,7 +107,7 @@ def create_team():
     doc["team_members"].append({"name": name, "email": email})
     db.teams.insert_one(doc) # insert a new document
     return redirect(url_for('view_team')) # tell the browser to make a request for the /read route
-
+'''
 @app.route('/edit/<mongoid>')
 def edit(mongoid):
     """
