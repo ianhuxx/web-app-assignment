@@ -77,6 +77,7 @@ def create_post():
 
     return redirect(url_for('read')) # tell the browser to make a request for the /read route
 
+
 @app.route('/edit/<mongoid>')
 def edit(mongoid):
     """
